@@ -1,15 +1,22 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import CalendarPage from "./pages/Calendar.page";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const date = new Date().toISOString().split("-");
+  const url = `year/${date[0]}/month/${date[1]}`;
   return (
-    <>
-      <h1 className="text-3xl text-blue-200 font-bold underline">Hello world!</h1>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to={url} replace />} />
+        <Route path="/year/:year/month/:month" element={<CalendarPage />} />
+      </Routes>
+    </Router>
   );
 }
 

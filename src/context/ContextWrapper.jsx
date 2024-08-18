@@ -6,8 +6,6 @@ function savedEventsReducer(state, { type, payload }) {
   switch (type) {
     case "push":
       return [...state, payload];
-    case "delete":
-      return state.filter((evt) => evt.id !== payload.id);
     default:
       throw new Error();
   }
